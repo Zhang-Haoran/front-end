@@ -1,5 +1,5 @@
 import * as ActionTypes from './ActionTypes';
-import {TEACHERS} from "../shared/teachers";
+import {baseUrl} from "../shared/baseUrl";
 
 export const addTeachers = (teachers) => ({
     type:ActionTypes.ADD_TEACHER,
@@ -16,7 +16,21 @@ export const teachersFailed = () => ({
 
 export const fetchTeachers = () => (dispatch)=> {
     dispatch(teachersLoading(true));
-    setTimeout(()=>{
-        dispatch(addTeachers(TEACHERS));
-    },2000);
+    return fetch(baseUrl + 'teachers')
+        .then(response => {
+            if(response.ok){
+                return response;
+            }else {
+                let error = new Error('Error'+ response.status+':' + response.statusText);
+                error.response = response;
+                throw error;
+            }
+        },
+            error=> {
+                let errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response=>response.json())
+        .then(teachers=>dispatch(addTeachers(teachers)))
+        .catch(error=>dispatch(teachersFailed(error.message)));
 }
