@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Loading} from "./LoadingComponent";
-import {Table} from "reactstrap";
+import {Card, CardHeader, Table} from "reactstrap";
 
 class TimeRecord extends Component{
     constructor(props) {
@@ -15,8 +15,6 @@ class TimeRecord extends Component{
                 <tr key={timeRecord.id}>
                     <td>{timeRecord.startTime}</td>
                     <td>{timeRecord.endTime}</td>
-                    <td>{timeRecord.batch_id}</td>
-                    <td>{timeRecord.teacher}</td>
                     <td>{timeRecord.teacher_name}</td>
                 </tr>
                 </tbody>
@@ -44,23 +42,21 @@ class TimeRecord extends Component{
                 <div>
                     <div className="container">
                         <div className="row">
-                            <div className="col-12">
-                                <h3>TimeRecords Table</h3>
-                            </div>
-                            <div className="row">
-                                <Table>
-                                    <thead>
+                            <Card>
+                                <CardHeader className="border-0">
+                                    <h3 className="mb-0">Time Record Table</h3>
+                                </CardHeader>
+                                <Table className="align-items-center" responsive>
+                                    <thead className="thead-light">
                                     <tr>
-                                        <th>Start Time</th>
-                                        <th>End Time</th>
-                                        <th>Batch Id</th>
-                                        <th>Teacher Id</th>
-                                        <th>Teacher Name</th>
+                                        <th scope="col">Start Time</th>
+                                        <th scope="col">End Time</th>
+                                        <th scope="col">Teacher Name</th>
                                     </tr>
                                     </thead>
                                     {timeRecord}
                                 </Table>
-                            </div>
+                            </Card>
                         </div>
                     </div>
                 </div>

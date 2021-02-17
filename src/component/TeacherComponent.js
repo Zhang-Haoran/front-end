@@ -1,5 +1,5 @@
 import React,{Component} from "react";
-import {Table} from "reactstrap";
+import {Card, CardFooter, CardHeader, PaginationItem, Table} from "reactstrap";
 import {Loading} from "./LoadingComponent";
 
 class Teacher extends Component{
@@ -42,22 +42,22 @@ class Teacher extends Component{
                 <div>
                     <div className="container">
                         <div className="row">
-                            <div className="col-12">
-                                <h3>Teacher Table</h3>
-                            </div>
-                            <div className="row">
-                                <Table>
-                                    <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Expected Work Hours(weekly)</th>
-                                        <th>Work Base</th>
-                                        <th>Confirm Date</th>
-                                    </tr>
-                                    </thead>
-                                    {teacher}
-                                </Table>
-                            </div>
+                            <Card>
+                                <CardHeader className="border-0">
+                                    <h3 className="mb-0">Teachers Table</h3>
+                                </CardHeader>
+                                    <Table className="align-items-center" responsive>
+                                        <thead className="thead-light">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Expected Work Hours(weekly)</th>
+                                            <th scope="col">Work Base</th>
+                                            <th scope="col">Confirm Date</th>
+                                        </tr>
+                                        </thead>
+                                        {teacher}
+                                    </Table>
+                            </Card>
                         </div>
                     </div>
                 </div>
