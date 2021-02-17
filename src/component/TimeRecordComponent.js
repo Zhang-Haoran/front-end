@@ -14,8 +14,8 @@ class TimeRecord extends Component{
                 <tbody>
                     <tr key={timeRecord.id}>
                         <td>{timeRecord.teacher_name}</td>
-                        <td>{timeRecord.startTime}</td>
-                        <td>{timeRecord.endTime}</td>
+                        <td>{new Intl.DateTimeFormat('en-AU',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(Date.parse(timeRecord.startTime)))}</td>
+                        <td>{new Intl.DateTimeFormat('en-AU',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(Date.parse(timeRecord.endTime)))}</td>
                     </tr>
                 </tbody>
             )

@@ -17,7 +17,7 @@ class Teacher extends Component{
                         <td>{teacher.name}</td>
                         <td>{teacher.weekly_expected_hours}</td>
                         <td>{teacher.work_base}</td>
-                        <td>{teacher.gmt_modified}</td>
+                        <td>{new Intl.DateTimeFormat('en-AU',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(Date.parse(teacher.gmt_modified)))}</td>
                         <td>
                             <Button className="btn-outline-info mr-1">Edit</Button>
                             <Button className="btn-outline-danger">Delete</Button>

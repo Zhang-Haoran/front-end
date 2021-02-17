@@ -56,7 +56,7 @@ class TeacherForm extends Component{
                                                   validators={{required}}>
                                     </Control.text>
                                     <Errors className="text-danger" model=".teacherName" show="touched" messages={{
-                                        required: "Required"
+                                        required: "* Required"
                                     }}/>
                                 </Col>
                             </Row>
