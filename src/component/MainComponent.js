@@ -6,8 +6,7 @@ import {fetchTeachers} from "../redux/ActionCreators";
 
 const mapStateToProps = state => {
     return{
-        teachers: state.teachers,
-        courses: state.courses
+        teachers: state.teachers
     }
 }
 

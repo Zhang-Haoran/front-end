@@ -5,7 +5,6 @@ import {Loading} from "./LoadingComponent";
 class Teacher extends Component{
     constructor(props) {
         super(props);
-
     }
 
     render() {
