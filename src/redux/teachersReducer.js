@@ -11,7 +11,7 @@ export const Teachers = (state = {
         case ActionType.TEACHERS_LOADING:
             return{...state, isLoading: true, errMess: null, teachers: []}
         case ActionType.TEACHERS_FAILED:
-            return{...state, isLoading: false, errMess: null, teachers: []}
+            return{...state, isLoading: false, errMess: action.payload, teachers: []}
         default:
             return state;
     }

@@ -1,21 +1,23 @@
-import React,{Component} from "react";
-import {Table} from "reactstrap";
+import React, {Component} from "react";
 import {Loading} from "./LoadingComponent";
+import {Table} from "reactstrap";
 
-class Teacher extends Component{
+class TimeRecord extends Component{
     constructor(props) {
         super(props);
+
     }
 
     render() {
-        const teacher = this.props.teachers.map((teacher)=>{
+        const timeRecord = this.props.timeRecords.map((timeRecord)=>{
             return(
                 <tbody>
-                <tr key={teacher.id}>
-                    <td>{teacher.name}</td>
-                    <td>{teacher.weekly_expected_hours}</td>
-                    <td>{teacher.work_base}</td>
-                    <td>{teacher.gmt_modified}</td>
+                <tr key={timeRecord.id}>
+                    <td>{timeRecord.startTime}</td>
+                    <td>{timeRecord.endTime}</td>
+                    <td>{timeRecord.batch_id}</td>
+                    <td>{timeRecord.teacher}</td>
+                    <td>{timeRecord.teacher_name}</td>
                 </tr>
                 </tbody>
             )
@@ -33,7 +35,7 @@ class Teacher extends Component{
             return(
                 <div className="container">
                     <div className="row">
-                        <h4>{this.props.teachers.errMess}</h4>
+                        <h4>{this.props.timeRecords.errMess}</h4>
                     </div>
                 </div>
             )
@@ -43,19 +45,20 @@ class Teacher extends Component{
                     <div className="container">
                         <div className="row">
                             <div className="col-12">
-                                <h3>Teacher Table</h3>
+                                <h3>TimeRecords Table</h3>
                             </div>
                             <div className="row">
                                 <Table>
                                     <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Expected Work Hours(weekly)</th>
-                                        <th>Work Base</th>
-                                        <th>Confirm Date</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Batch Id</th>
+                                        <th>Teacher Id</th>
+                                        <th>Teacher Name</th>
                                     </tr>
                                     </thead>
-                                    {teacher}
+                                    {timeRecord}
                                 </Table>
                             </div>
                         </div>
@@ -66,4 +69,4 @@ class Teacher extends Component{
     }
 
 }
-export default Teacher;
+export default TimeRecord;
