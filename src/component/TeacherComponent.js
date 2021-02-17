@@ -1,6 +1,7 @@
 import React,{Component} from "react";
-import {Card, CardFooter, CardHeader, PaginationItem, Table} from "reactstrap";
+import {Button, Card, CardFooter, CardHeader, PaginationItem, Table} from "reactstrap";
 import {Loading} from "./LoadingComponent";
+import TeacherForm from "./TeacherForm";
 
 class Teacher extends Component{
     constructor(props) {
@@ -10,13 +11,15 @@ class Teacher extends Component{
     render() {
         const teacher = this.props.teachers.map((teacher)=>{
             return(
+
                 <tbody>
-                <tr key={teacher.id}>
-                    <td>{teacher.name}</td>
-                    <td>{teacher.weekly_expected_hours}</td>
-                    <td>{teacher.work_base}</td>
-                    <td>{teacher.gmt_modified}</td>
-                </tr>
+                    <tr key={teacher.id}>
+                        <td>{teacher.name}</td>
+                        <td>{teacher.weekly_expected_hours}</td>
+                        <td>{teacher.work_base}</td>
+                        <td>{teacher.gmt_modified}</td>
+                        <td><Button color="warning">Edit</Button><Button color="danger">Delete</Button></td>
+                    </tr>
                 </tbody>
             )
         })
@@ -44,7 +47,10 @@ class Teacher extends Component{
                         <div className="row">
                             <Card>
                                 <CardHeader className="border-0">
-                                    <h3 className="mb-0">Teachers Table</h3>
+                                        <h3 className="mb-0 d-flex justify-content-between align-items-center">Teachers Table
+                                            <TeacherForm/>
+                                        </h3>
+
                                 </CardHeader>
                                     <Table className="align-items-center" responsive>
                                         <thead className="thead-light">
@@ -53,12 +59,13 @@ class Teacher extends Component{
                                             <th scope="col">Expected Work Hours(weekly)</th>
                                             <th scope="col">Work Base</th>
                                             <th scope="col">Confirm Date</th>
+                                            <th scope="col">Actions</th>
                                         </tr>
                                         </thead>
                                         {teacher}
                                     </Table>
                             </Card>
-                        </div>
+                    </div>
                     </div>
                 </div>
             );

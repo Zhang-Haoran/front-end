@@ -12,11 +12,11 @@ class TimeRecord extends Component{
         const timeRecord = this.props.timeRecords.map((timeRecord)=>{
             return(
                 <tbody>
-                <tr key={timeRecord.id}>
-                    <td>{timeRecord.startTime}</td>
-                    <td>{timeRecord.endTime}</td>
-                    <td>{timeRecord.teacher_name}</td>
-                </tr>
+                    <tr key={timeRecord.id}>
+                        <td>{timeRecord.teacher_name}</td>
+                        <td>{timeRecord.startTime}</td>
+                        <td>{timeRecord.endTime}</td>
+                    </tr>
                 </tbody>
             )
         })
@@ -49,9 +49,9 @@ class TimeRecord extends Component{
                                 <Table className="align-items-center" responsive>
                                     <thead className="thead-light">
                                     <tr>
+                                        <th scope="col">Teacher Name</th>
                                         <th scope="col">Start Time</th>
                                         <th scope="col">End Time</th>
-                                        <th scope="col">Teacher Name</th>
                                     </tr>
                                     </thead>
                                     {timeRecord}
