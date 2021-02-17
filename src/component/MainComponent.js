@@ -4,6 +4,8 @@ import Teacher from "./TeacherComponent";
 import {connect} from "react-redux";
 import {fetchTeachers, fetchTimeRecords} from "../redux/ActionCreators";
 import TimeRecord from "./TimeRecordComponent";
+import Header from "./HeaderComponent";
+import Footer from "./FooterComponent";
 
 const mapStateToProps = state => {
     return{
@@ -31,6 +33,7 @@ class Main extends Component{
     render() {
         return (
             <div>
+                <Header/>
                 <Switch>
                     <Route path="/teacher" component={()=><Teacher
                         teachers={this.props.teachers.teachers}
@@ -44,6 +47,7 @@ class Main extends Component{
                     />}/>
                     <Redirect to="/teacher"/>
                 </Switch>
+                <Footer/>
             </div>
         );
     }
