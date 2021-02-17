@@ -33,7 +33,7 @@ class TimeRecord extends Component{
             return(
                 <div className="container">
                     <div className="row">
-                        <h4>{this.props.timeRecords.errMess}</h4>
+                        <h4>{this.props.errMess}</h4>
                     </div>
                 </div>
             )

@@ -3,7 +3,7 @@ import {baseUrl} from "../shared/baseUrl";
 
 //get Teachers list from server
 export const addTeachers = (teachers) => ({
-    type:ActionTypes.ADD_TEACHER,
+    type:ActionTypes.ADD_TEACHERS,
     payload: teachers
 })
 
@@ -11,8 +11,9 @@ export const teachersLoading = () => ({
     type: ActionTypes.TEACHERS_LOADING
 })
 
-export const teachersFailed = () => ({
-    type:ActionTypes.TEACHERS_FAILED
+export const teachersFailed = (errmess) => ({
+    type:ActionTypes.TEACHERS_FAILED,
+    payload:errmess
 })
 
 export const fetchTeachers = () => (dispatch)=> {
@@ -46,8 +47,9 @@ export const timeRecordsLoading = () => ({
     type: ActionTypes.TIMERECORDS_LOADING
 })
 
-export const timeRecordsFailed = () => ({
-    type:ActionTypes.TIMERECORDS_FAILED
+export const timeRecordsFailed = (errmess) => ({
+    type:ActionTypes.TIMERECORDS_FAILED,
+    payload:errmess
 })
 
 export const fetchTimeRecords = () => (dispatch)=> {

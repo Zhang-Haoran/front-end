@@ -6,7 +6,7 @@ export const Teachers = (state = {
     teachers: []
 },action) => {
     switch (action.type){
-        case ActionType.ADD_TEACHER:
+        case ActionType.ADD_TEACHERS:
             return{...state, isLoading: false, errMess: null, teachers: action.payload}
         case ActionType.TEACHERS_LOADING:
             return{...state, isLoading: true, errMess: null, teachers: []}
