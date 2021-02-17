@@ -6,7 +6,7 @@ export const TimeRecords = (state = {
     timeRecords: []
 },action) => {
     switch (action.type){
-        case ActionType.ADD_TIMERECORD:
+        case ActionType.FETCH_TIMERECORDS:
             return{...state, isLoading: false, errMess: null, timeRecords: action.payload}
         case ActionType.TIMERECORDS_LOADING:
             return{...state, isLoading: true, errMess: null, timeRecords: []}
