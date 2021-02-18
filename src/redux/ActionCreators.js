@@ -133,7 +133,7 @@ export const coursesFailed = (errmess) => ({
 
 export const fetchCourses = () => (dispatch)=> {
     dispatch(coursesLoading(true));
-    return fetch(baseUrl + 'englishclass')
+    return fetch(baseUrl + 'classes')
         .then(response => {
                 if(response.ok){
                     return response;
