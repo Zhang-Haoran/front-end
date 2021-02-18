@@ -1,11 +1,11 @@
 import React,{Component} from "react";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-import Teacher from "./TeacherComponent";
+import Teacher from "./Teacher/TeacherComponent";
 import {connect} from "react-redux";
 import {fetchTeachers, fetchTimeRecords, postTeacher} from "../redux/ActionCreators";
-import TimeRecord from "./TimeRecordComponent";
-import Header from "./HeaderComponent";
-import Footer from "./FooterComponent";
+import TimeRecord from "./TimeRecord/TimeRecordComponent";
+import Header from "./UI/HeaderComponent";
+import Footer from "./UI/FooterComponent";
 
 const mapStateToProps = state => {
     return{

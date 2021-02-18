@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Loading} from "./LoadingComponent";
+import {Loading} from "../UI/LoadingComponent";
 import {Card, CardHeader, Table} from "reactstrap";
 
 class TimeRecord extends Component{

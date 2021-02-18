@@ -1,6 +1,6 @@
 import React,{Component} from "react";
 import {Button, Card, CardFooter, CardHeader, PaginationItem, Table} from "reactstrap";
-import {Loading} from "./LoadingComponent";
+import {Loading} from "../UI/LoadingComponent";
 import TeacherForm from "./TeacherForm";
 
 class Teacher extends Component{

@@ -1,10 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {Teachers} from "./teachersReducer";
+import {Teachers} from "./reducer/teachersReducer";
 import {logger} from "redux-logger/src";
 import thunk from "redux-thunk";
-import {TimeRecords} from "./timeRecordsReducer";
+import {TimeRecords} from "./reducer/timeRecordsReducer";
 import {createForms} from "react-redux-form";
-import {InitialAddTeacher} from "./teacherForm";
+import {InitialAddTeacher} from "./forms/teacherForm";
 
 export const ConfigureStore = () => {
     const store = createStore(

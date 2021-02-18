@@ -1,4 +1,4 @@
-import * as ActionType from "./ActionTypes";
+import * as ActionType from "../ActionTypes";
 
 export const Teachers = (state = {
     isLoading: true,
