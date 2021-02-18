@@ -18,7 +18,6 @@ class TeacherForm extends Component{
                 expectedWorkHours: false,
                 workBase: false
             }
-
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,8 +30,10 @@ class TeacherForm extends Component{
     }
 
     handleSubmit(values){
-        alert('Current State is: ' + JSON.stringify(values));
+        this.toggleModal();
+        this.props.postTeacher(values.teacherId,values.teacherName, values.expectedWorkHours, values.workBase);
     }
+
 
     render() {
         return (
@@ -45,6 +46,22 @@ class TeacherForm extends Component{
                     <ModalHeader toggle={this.toggleModal}>Add Teacher</ModalHeader>
                     <ModalBody>
                         <Form model="addTeacher" onSubmit={(values)=>this.handleSubmit(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor="teachId" md={12}>Teacher Id</Label>
+                                <Col md={12}>
+                                    <Control.text className="form-control"
+                                                  model=".teacherId"
+                                                  id="teacherId"
+                                                  name="teacherId"
+                                                  placeholder="Teacher Id"
+                                                  validators={{required,isNumber}}>
+                                    </Control.text>
+                                    <Errors className="text-danger" model=".teacherId" show="touched" messages={{
+                                        required: "* Required",
+                                        isNumber: "Must be a number"
+                                    }}/>
+                                </Col>
+                            </Row>
                             <Row className="form-group">
                                 <Label htmlFor="teacherName" md={12}>Teacher Name</Label>
                                 <Col md={12}>

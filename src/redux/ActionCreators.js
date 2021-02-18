@@ -72,3 +72,45 @@ export const fetchTimeRecords = () => (dispatch)=> {
         .then(timeRecords=>dispatch(addTimeRecords(timeRecords)))
         .catch(error=>dispatch(timeRecordsFailed(error.message)));
 }
+
+//post teacher data into server
+export const addTeacher = (teacher) => ({
+    type: ActionTypes.ADD_TEACHER,
+    payload: teacher
+})
+
+export const postTeacher = (teacherId,teacherName, expectedWorkHours,workBase)=>(dispatch)=>{
+    const newTeacher = {
+        id:teacherId,
+        name:teacherName,
+        weekly_expected_hours: expectedWorkHours,
+        work_base: workBase,
+    }
+    console.log(newTeacher);
+
+    return fetch(baseUrl+'teachers',{
+        method: 'POST',
+        body: JSON.stringify(newTeacher),
+        headers: {
+            'Content-Type':'application/json'
+        },
+        credentials:'same-origin'
+    }).then(response=>{
+        if(response.ok){
+            return response;
+        }else {
+            let error = new Error('Error' + response.status + ': '+ response.statusText)
+            error.response = response;
+            throw error;
+        }
+    }, error=> {
+        throw new Error(error.messages);
+        })
+        .then(response => response.json())
+        .then(response => {
+            dispatch(addTeacher(response));
+            console.log(response)
+        })
+        .catch(error => {console.log(error.messages);
+        alert(error.messages)})
+}

@@ -17,7 +17,6 @@ class Teacher extends Component{
                         <td>{teacher.name}</td>
                         <td>{teacher.weekly_expected_hours}</td>
                         <td>{teacher.work_base}</td>
-                        <td>{new Intl.DateTimeFormat('en-AU',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(Date.parse(teacher.gmt_modified)))}</td>
                         <td>
                             <Button className="btn-outline-info mr-1">Edit</Button>
                             <Button className="btn-outline-danger">Delete</Button>
@@ -51,7 +50,7 @@ class Teacher extends Component{
                             <Card>
                                 <CardHeader className="border-0">
                                         <h3 className="mb-0 d-flex justify-content-between align-items-center">Teachers Table
-                                            <TeacherForm/>
+                                            <TeacherForm postTeacher={this.props.postTeacher}/>
                                         </h3>
 
                                 </CardHeader>
@@ -61,7 +60,6 @@ class Teacher extends Component{
                                             <th scope="col">Name</th>
                                             <th scope="col">Expected Work Hours(weekly)</th>
                                             <th scope="col">Work Base</th>
-                                            <th scope="col">Confirm Date</th>
                                             <th scope="col">Actions</th>
                                         </tr>
                                         </thead>

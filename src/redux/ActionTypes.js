@@ -7,3 +7,4 @@ export const FETCH_TIMERECORDS = 'FETCH_TIMERECORDS';
 export const TIMERECORDS_LOADING = 'TIMERECORDS_LOADING';
 export const TIMERECORDS_FAILED = 'TIMERECORDS_FAILED';
 //post Teacher into server
+export const ADD_TEACHER = 'ADD_TEACHER';
