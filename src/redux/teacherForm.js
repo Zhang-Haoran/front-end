@@ -1,5 +1,5 @@
 export const InitialAddTeacher = {
-    teacherId:1,
+    teacherId:"",
     teacherName:"",
     expectedWorkHours: "",
     workBase: "Home"

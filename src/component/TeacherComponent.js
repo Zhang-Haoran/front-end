@@ -18,7 +18,8 @@ class Teacher extends Component{
                         <td>{teacher.weekly_expected_hours}</td>
                         <td>{teacher.work_base}</td>
                         <td>
-                            <Button className="btn-outline-info mr-1">Edit</Button>
+                            <Button className="btn-outline-info mr-1">View</Button>
+                            <Button className="btn-outline-warning mr-1">Edit</Button>
                             <Button className="btn-outline-danger">Delete</Button>
                         </td>
                     </tr>
