@@ -1,23 +1,26 @@
 import React,{Component} from "react";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-import Teacher from "./Teacher/TeacherComponent";
+import Teacher from "./Teacher/TeacherTable";
 import {connect} from "react-redux";
-import {fetchTeachers, fetchTimeRecords, postTeacher} from "../redux/ActionCreators";
-import TimeRecord from "./TimeRecord/TimeRecordComponent";
+import {fetchCourses, fetchTeachers, fetchTimeRecords, postTeacher} from "../redux/ActionCreators";
+import TimeRecord from "./TimeRecord/TimeRecordTable";
 import Header from "./UI/HeaderComponent";
 import Footer from "./UI/FooterComponent";
+import CourseTable from "./Course/CourseTable";
 
 const mapStateToProps = state => {
     return{
         teachers: state.teachers,
-        timeRecords: state.timeRecords
+        timeRecords: state.timeRecords,
+        courses: state.courses
     }
 }
 
 const mapDispatchToProps = (dispatch) => ({
     fetchTeachers:()=>{dispatch(fetchTeachers())},
     fetchTimeRecords: ()=>{dispatch(fetchTimeRecords())},
-    postTeacher:(teacherId,teacherName,expectedWorkHours,workBase)=>dispatch(postTeacher(teacherId,teacherName,expectedWorkHours,workBase))
+    postTeacher:(teacherId,teacherName,expectedWorkHours,workBase)=>dispatch(postTeacher(teacherId,teacherName,expectedWorkHours,workBase)),
+    fetchCourses:()=>{dispatch(fetchCourses())}
 })
 
 class Main extends Component{
@@ -29,6 +32,7 @@ class Main extends Component{
     componentDidMount() {
         this.props.fetchTeachers();
         this.props.fetchTimeRecords();
+        this.props.fetchCourses();
     }
 
     render() {
@@ -46,6 +50,11 @@ class Main extends Component{
                         timeRecords={this.props.timeRecords.timeRecords}
                         isLoading={this.props.timeRecords.isLoading}
                         errMess={this.props.timeRecords.errMess}
+                    />}/>
+                    <Route path="/course" component={()=><CourseTable
+                        courses = {this.props.courses.courses}
+                        isLoading={this.props.courses.isLoading}
+                        errMess={this.props.courses.errMess}
                     />}/>
                     <Redirect to="/teacher"/>
                 </Switch>

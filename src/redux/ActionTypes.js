@@ -8,3 +8,7 @@ export const TIMERECORDS_LOADING = 'TIMERECORDS_LOADING';
 export const TIMERECORDS_FAILED = 'TIMERECORDS_FAILED';
 //post Teacher into server
 export const ADD_TEACHER = 'ADD_TEACHER';
+//fetch Course from server
+export const FETCH_COURSES = 'FETCH_COURSES';
+export const COURSES_LOADING = 'COURSES_LOADING';
+export const COURSES_FAILED = 'COURSES_FAILED';

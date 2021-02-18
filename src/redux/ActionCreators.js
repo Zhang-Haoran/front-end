@@ -114,3 +114,40 @@ export const postTeacher = (teacherId,teacherName, expectedWorkHours,workBase)=>
         .catch(error => {console.log(error.messages);
         alert(error.messages)})
 }
+
+//get class list from server
+//get TimeRecord list from server
+export const addCourses = (courses) => ({
+    type:ActionTypes.FETCH_COURSES,
+    payload: courses
+})
+
+export const coursesLoading = () => ({
+    type: ActionTypes.COURSES_LOADING
+})
+
+export const coursesFailed = (errmess) => ({
+    type:ActionTypes.COURSES_FAILED,
+    payload:errmess
+})
+
+export const fetchCourses = () => (dispatch)=> {
+    dispatch(coursesLoading(true));
+    return fetch(baseUrl + 'englishclass')
+        .then(response => {
+                if(response.ok){
+                    return response;
+                }else {
+                    let error = new Error('Error'+ response.status+':' + response.statusText);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error=> {
+                let errmess = new Error(error.message);
+                throw errmess;
+            })
+        .then(response=>response.json())
+        .then(courses=>dispatch(addCourses(courses)))
+        .catch(error=>dispatch(coursesFailed(error.message)));
+}

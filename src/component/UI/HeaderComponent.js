@@ -34,6 +34,11 @@ class Header extends Component{
                                         <span className="fa fa-clock-o fa-lg"/> Time Record
                                     </NavLink>
                                 </NavItem>
+                                <NavItem>
+                                    <NavLink className="nav-link" to="/course">
+                                        <span className="fa fa-users fa-lg"/> Course
+                                    </NavLink>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </div>
