@@ -54,15 +54,15 @@ class CourseTable extends Component{
                                 <Table className="align-items-center" responsive>
                                     <thead className="thead-light">
                                         <tr>
-                                            <td>Course Id</td>
-                                            <td>Date</td>
-                                            <td>Start Time</td>
-                                            <td>End Time</td>
-                                            <td>Special</td>
-                                            <td>Uniform</td>
-                                            <td>Studio</td>
-                                            <td>Topic</td>
-                                            <td>Teacher</td>
+                                            <th scope="col">Id</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">Start Time</th>
+                                            <th scope="col">End Time</th>
+                                            <th scope="col">Special</th>
+                                            <th scope="col">Uniform</th>
+                                            <th scope="col">Studio</th>
+                                            <th scope="col">Topic</th>
+                                            <th scope="col">Teacher</th>
                                         </tr>
                                     </thead>
                                     {course}
