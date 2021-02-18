@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import {Loading} from "../UI/LoadingComponent";
-import {Button, Card, CardHeader, Input, Label, Table} from "reactstrap";
+import {Card, CardHeader, Table} from "reactstrap";
 
 class CourseTable extends Component{
     constructor(props) {
@@ -8,10 +8,20 @@ class CourseTable extends Component{
     }
 
     render() {
-        const course = this.props.timeRecords.map((course)=>{
+        const course = this.props.courses.map((course)=>{
             return(
                 <tbody>
-
+                    <tr>
+                        <td>{course.id}</td>
+                        <td>{course.date}</td>
+                        <td>{course.startTime}</td>
+                        <td>{course.endTime}</td>
+                        <td>{course.special}</td>
+                        <td>{course.uniform}</td>
+                        <td>{course.studio}</td>
+                        <td>{course.topic}</td>
+                        <td>{course.teacher}</td>
+                    </tr>
                 </tbody>
             )
         })
@@ -43,6 +53,17 @@ class CourseTable extends Component{
                                 </CardHeader>
                                 <Table className="align-items-center" responsive>
                                     <thead className="thead-light">
+                                        <tr>
+                                            <td>Course Id</td>
+                                            <td>Date</td>
+                                            <td>Start Time</td>
+                                            <td>End Time</td>
+                                            <td>Special</td>
+                                            <td>Uniform</td>
+                                            <td>Studio</td>
+                                            <td>Topic</td>
+                                            <td>Teacher</td>
+                                        </tr>
                                     </thead>
                                     {course}
                                 </Table>
