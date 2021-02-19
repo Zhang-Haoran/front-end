@@ -11,7 +11,6 @@ class Teacher extends Component{
     render() {
         const teacher = this.props.teachers.map((teacher)=>{
             return(
-            //filter 功能进行if else的判断，满足条件就显示，否则返回空
                 <tbody>
                     <tr key={teacher.id}>
                         <td>{teacher.name}</td>

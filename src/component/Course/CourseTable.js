@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Loading } from "../UI/LoadingComponent";
-import { Card, CardHeader, Input, Table } from "reactstrap";
+import { Card, CardHeader, Input, Table} from "reactstrap";
 import checkTimeRange from "../../utils/checkTimeRange";
 import processData from "../../utils/processData";
 
@@ -10,12 +10,21 @@ class CourseTable extends Component {
     this.state = {
       timeFilter: "",
       dateFilter: "",
+      isModalOpen:false,
+      resultFilter:[]
     };
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
-  }
+    this.toggleModal = this.toggleModal.bind(this);
+    }
 
-  handleOnClick(date, startTime, endTime) {
+    toggleModal(){
+    this.setState({
+      isModalOpen:!this.state.isModalOpen
+    })
+    }
+
+    handleOnClick(date, startTime, endTime) {
     const paramDate = date.replaceAll("/", "-");
     const parameterList = [{ name: "date", value: paramDate }];
 
@@ -24,13 +33,16 @@ class CourseTable extends Component {
       "get",
       parameterList
     ).then((response) => {
-      response.forEach((course) => {
-        checkTimeRange(startTime, course.startTime, course.endTime) &&
-          checkTimeRange(endTime, course.startTime, course.endTime) &&
-          console.log(course);
+      let result = new Set();
+      response.forEach((timeRecord) => {
+        checkTimeRange(startTime, timeRecord.startTime, timeRecord.endTime) &&
+          checkTimeRange(endTime, timeRecord.startTime, timeRecord.endTime) &&
+        result.add(timeRecord.teacher_name);
       });
+      this.setState({
+        resultFilter: result
+      })
     });
-    //console.log(date, startTime, endTime);
   }
 
   handleInputChange(event) {
@@ -43,6 +55,7 @@ class CourseTable extends Component {
   }
 
   render() {
+
     if (this.props.isLoading) {
       return (
         <div className="container">
@@ -87,6 +100,12 @@ class CourseTable extends Component {
                         value={this.state.dateFilter}
                         onChange={this.handleInputChange}
                       />
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12">
+                      <h6>Available teacher</h6>
+                      {this.state.resultFilter}
                     </div>
                   </div>
                 </CardHeader>
