@@ -1,14 +1,15 @@
 import React, {Component} from "react";
 import {Loading} from "../UI/LoadingComponent";
 import {Button, Card, CardHeader, Form, Input, Label, Table} from "reactstrap";
+import checkTimeRange from "../../utils/checkTimeRange";
 
 class TimeRecord extends Component{
     constructor(props) {
         super(props);
         this.state={
             nameFilter: "",
-            startTimeFilter: "",
-            endTimeFilter:""
+            timeFilter: "",
+            dateFilter:""
         }
         this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -24,15 +25,24 @@ class TimeRecord extends Component{
 
     render() {
         const timeRecord = this.props.timeRecords.map((timeRecord)=>{
-            return(
-                <tbody>
+            if((checkTimeRange(this.state.timeFilter,timeRecord.startTime, timeRecord.endTime)
+                || this.state.timeFilter ==="")
+                && timeRecord.teacher_name.toUpperCase().search(this.state.nameFilter.toUpperCase()) !== -1
+                && (timeRecord.date === this.state.dateFilter||this.state.dateFilter ==="")){
+                return(
+                    <tbody>
                     <tr key={timeRecord.id}>
                         <td>{timeRecord.teacher_name}</td>
-                        <td>{new Intl.DateTimeFormat('en-AU',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(Date.parse(timeRecord.startTime)))}</td>
-                        <td>{new Intl.DateTimeFormat('en-AU',{year:'numeric',month:'short',day:'2-digit',hour:'2-digit',minute:'2-digit'}).format(new Date(Date.parse(timeRecord.endTime)))}</td>
+                        <td>{timeRecord.date}</td>
+                        <td>{timeRecord.startTime}</td>
+                        <td>{timeRecord.endTime}</td>
                     </tr>
-                </tbody>
-            )
+                    </tbody>
+                )
+            }else {
+                return null;
+            }
+
         })
 
         if(this.props.isLoading){
@@ -61,13 +71,13 @@ class TimeRecord extends Component{
                                     <h3 className="mb-0">Time Record Table</h3>
                                     <div className="row">
                                         <div className="col-12">
-                                            <Label htmlFor="nameFilter" md={2}>Name</Label>
-                                        </div>
-                                        <div className="col-12">
                                             <Input type="text" id="nameFilter" name="nameFilter" placeholder="Enter name" value={this.state.nameFilter} onChange={this.handleInputChange}/>
                                         </div>
                                         <div className="col-12">
-                                            <Button>Filter</Button>
+                                            <Input type="text" id="timeFilter" name="timeFilter" placeholder="Enter time" value={this.state.timeFilter} onChange={this.handleInputChange}/>
+                                        </div>
+                                        <div className="col-12">
+                                            <Input type="text" id="dateFilter" name="dateFilter" placeholder="Enter date" value={this.state.dateFilter} onChange={this.handleInputChange}/>
                                         </div>
                                     </div>
 
@@ -77,6 +87,7 @@ class TimeRecord extends Component{
                                     <thead className="thead-light">
                                     <tr>
                                         <th scope="col">Teacher Name</th>
+                                        <th scope="col">Date</th>
                                         <th scope="col">Start Time</th>
                                         <th scope="col">End Time</th>
                                     </tr>

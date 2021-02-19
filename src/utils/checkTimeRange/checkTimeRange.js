@@ -5,7 +5,7 @@ const checkTimeRange = (time, start, end) => {
 
   console.log(timeNum, startNum, endNum);
 
-  if (timeNum > startNum && timeNum < endNum) return true;
+  if ((timeNum > startNum && timeNum < endNum)|| timeNum === startNum || timeNum === endNum) return true;
 
   return false;
 };

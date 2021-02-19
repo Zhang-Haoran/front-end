@@ -1,18 +1,35 @@
 import React, { Component } from "react";
 import { Loading } from "../UI/LoadingComponent";
-import { Card, CardHeader, Table } from "reactstrap";
+import {Card, CardHeader, Input, Table} from "reactstrap";
+import checkTimeRange from "../../utils/checkTimeRange";
+import processData from "../../utils/processData";
 
 class CourseTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      date: "2020/12/01",
-    };
+    this.state={
+      timeFilter: "",
+      dateFilter:""
+    }
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
+  }
+
+  handleOnClick(date, startTime, endTime){
+      const parameterList = [{name:"date",value:date}]
+      processData(process.env.REACT_APP_URL,"get",parameterList,null);
+  }
+
+  handleInputChange(event){
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    })
   }
 
   render() {
-    const { date } = this.state;
-
     if (this.props.isLoading) {
       return (
         <div className="container">
@@ -37,6 +54,14 @@ class CourseTable extends Component {
               <Card>
                 <CardHeader className="border-0">
                   <h3 className="mb-0">Course Table</h3>
+                  <div className="row">
+                    <div className="col-12">
+                      <Input type="text" id="timeFilter" name="timeFilter" placeholder="Enter time" value={this.state.timeFilter} onChange={this.handleInputChange}/>
+                    </div>
+                    <div className="col-12">
+                      <Input type="text" id="dateFilter" name="dateFilter" placeholder="Enter date" value={this.state.dateFilter} onChange={this.handleInputChange}/>
+                    </div>
+                  </div>
                 </CardHeader>
                 <Table className="align-items-center" responsive>
                   <thead className="thead-light">
@@ -53,11 +78,12 @@ class CourseTable extends Component {
                     </tr>
                   </thead>
                   {this.props.courses.map((course) => {
-                    if (course.date === date)
+                    if((checkTimeRange(this.state.timeFilter,course.startTime, course.endTime)
+                        || this.state.timeFilter ==="")
+                        && (course.date === this.state.dateFilter||this.state.dateFilter ==="")){
                       return (
                         <tbody>
-                          {console.log(course.date, date)}
-                          <tr>
+                          <tr onClick={this.handleOnClick(course.date,course.startTime, course.endTime)}>
                             <td>{course.id}</td>
                             <td>{course.date}</td>
                             <td>{course.startTime}</td>
@@ -69,8 +95,9 @@ class CourseTable extends Component {
                             <td>{course.teacher}</td>
                           </tr>
                         </tbody>
-                      );
-                    else return null;
+                      );}else{
+                      return null;
+                    }
                   })}
                 </Table>
               </Card>
