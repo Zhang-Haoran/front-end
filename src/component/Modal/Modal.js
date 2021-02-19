@@ -53,11 +53,6 @@ const Title = styled.h1`
   text-align: center;
 `;
 
-const Description = styled.p`
-  text-align: center;
-  line-height: 20px;
-`;
-
 const CloseButton = styled.button`
   background: transparent;
   position: absolute;
