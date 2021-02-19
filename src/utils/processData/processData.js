@@ -19,10 +19,11 @@ const processData = (url, method, parameterList, body) => {
       body: JSON.stringify(body),
     });
   };
+
   if (processing !== null)
     return processing(url + param)
       .then((response) => response.json())
-      .then((data) => console.log(data));
+      .then((data) => data);
 };
 
 export default processData;
