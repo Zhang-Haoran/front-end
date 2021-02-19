@@ -18,11 +18,18 @@ class CourseTable extends Component {
   handleOnClick(date, startTime, endTime) {
     const paramDate = date.replaceAll("/", "-");
     const parameterList = [{ name: "date", value: paramDate }];
+
     processData(
       process.env.REACT_APP_URL + "/timerecords",
       "get",
       parameterList
-    );
+    ).then((response) => {
+      response.forEach((course) => {
+        checkTimeRange(startTime, course.startTime, course.endTime) &&
+          checkTimeRange(endTime, course.startTime, course.endTime) &&
+          console.log(course);
+      });
+    });
     //console.log(date, startTime, endTime);
   }
 
