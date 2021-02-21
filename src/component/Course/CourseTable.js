@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Loading } from "../UI/LoadingComponent";
-import { Card, CardHeader, Input, Table} from "reactstrap";
+import {Card, CardHeader, Input, Modal, ModalBody, ModalHeader, Table} from "reactstrap";
 import checkTimeRange from "../../utils/checkTimeRange";
 import processData from "../../utils/processData";
 
@@ -43,6 +43,7 @@ class CourseTable extends Component {
         resultFilter: result
       })
     });
+    this.toggleModal();
   }
 
   handleInputChange(event) {
@@ -75,6 +76,20 @@ class CourseTable extends Component {
     } else {
       return (
         <div>
+          <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
+            <ModalHeader>
+              <h6>Available teacher</h6>
+            </ModalHeader>
+            <ModalBody>
+              <div className="row">
+                <div className="col-12">
+                  {this.state.resultFilter}
+                </div>
+              </div>
+            </ModalBody>
+          </Modal>
+
+
           <div className="container">
             <div className="row">
               <Card>
@@ -102,12 +117,7 @@ class CourseTable extends Component {
                       />
                     </div>
                   </div>
-                  <div className="row">
-                    <div className="col-12">
-                      <h6>Available teacher</h6>
-                      {this.state.resultFilter}
-                    </div>
-                  </div>
+
                 </CardHeader>
                 <Table className="align-items-center" responsive>
                   <thead className="thead-light">
